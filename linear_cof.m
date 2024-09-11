@@ -22,27 +22,18 @@ up_a=1/(2*pi)*(angle2-angle1)/2+1/(2*pi)*(Y_r*log(r2/r1)+X_r*(angle2-angle1))/(-
 wp_a=1/(2*pi)*log(r2/r1)/2+1/(2*pi)*(X_r*log(r2/r1)+s-Y_r*(angle2-angle1))/(-s);
 up_b=1/(2*pi)*(angle2-angle1)/2+1/(2*pi)*(Y_r*log(r2/r1)+X_r*(angle2-angle1))/(s);
 wp_b=1/(2*pi)*log(r2/r1)/2+1/(2*pi)*(X_r*log(r2/r1)+s-Y_r*(angle2-angle1))/(s);
+% cof=dot([up,wp],[cos(theta_p),sin(th
+% eta_p)]);
 if(Y_r==0 && X_r==0)
     up_a=0.25;
     wp_a=-1/(2*pi);
     up_b=0.25;
-    wp_b=1/(2*pi)
+    wp_b=1/(2*pi);
 end
-% cof=dot([up,wp],[cos(theta_p),sin(th
-% eta_p)]);
 u_a=up_a*cos(angle)-wp_a*sin(angle);
 w_a=up_a*sin(angle)+wp_a*cos(angle);
 u_b=up_b*cos(angle)-wp_b*sin(angle);
 w_b=up_b*sin(angle)+wp_b*cos(angle);
 
 %将面源坐标系下的速度投影到控制点的法向
-
-
- 
-
- 
-
-
-
-
 end
