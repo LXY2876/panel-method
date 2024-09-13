@@ -1,4 +1,4 @@
-function [u_a,w_a,u_b,w_b,u_c,w_c] = Quadratic_source_cof(X,Y,x1,y1,x2,y2,angle,theta)
+function [normal_cof_a,normal_cof_b,normal_cof_c,tangl_cof_a,tangl_cof_b,tangl_cof_c] = Quadratic_source_cof(X,Y,x1,y1,x2,y2,angle,theta)
 % 计算影响系数 
 % 将控制面细分为n段求数值积分
 %控制点j坐标
@@ -14,7 +14,7 @@ r2=sqrt((X_r-s/2)^2+Y_r^2);
 % angle2=atan(Y_r/(X_r-s/2));
 angle1=atan2(Y_r,(X_r+s/2));
 angle2=atan2(Y_r,(X_r-s/2));
-theta_p=theta-angle;%控制点处的切向方向在面源坐标系下的角度
+delta_theta=theta-angle;%控制点处的切向方向在面源坐标系下的角度
 if(Y_r==0 && X_r==0)
     angle2=pi;
 end
@@ -36,11 +36,21 @@ up_c=cof_xx_u/(s^2/2)+cof_x_u/(s);
 wp_c=cof_xx_w/(s^2/2)+cof_x_w/(s);
 % cof=dot([up,wp],[cos(theta_p),sin(th
 % eta_p)]);
-u_a=up_a*cos(angle)-wp_a*sin(angle);
-w_a=up_a*sin(angle)+wp_a*cos(angle);
-u_b=up_b*cos(angle)-wp_b*sin(angle);
-w_b=up_b*sin(angle)+wp_b*cos(angle);
-u_c=up_c*cos(angle)-wp_c*sin(angle);
-w_c=up_c*sin(angle)+wp_c*cos(angle);
+% u_a=up_a*cos(angle)-wp_a*sin(angle);
+% w_a=up_a*sin(angle)+wp_a*cos(angle);
+% u_b=up_b*cos(angle)-wp_b*sin(angle);
+% w_b=up_b*sin(angle)+wp_b*cos(angle);
+% u_c=up_c*cos(angle)-wp_c*sin(angle);
+% w_c=up_c*sin(angle)+wp_c*cos(angle);
+
+
+
+ 
+normal_cof_a=dot([up_a,wp_a],[cos(delta_theta+pi/2),sin(delta_theta+pi/2)]);
+normal_cof_b=dot([up_b,wp_b],[cos(delta_theta+pi/2),sin(delta_theta+pi/2)]);
+normal_cof_c=dot([up_c,wp_c],[cos(delta_theta+pi/2),sin(delta_theta+pi/2)]);
+tangl_cof_a=dot([up_a,wp_a],[cos(delta_theta),sin(delta_theta)]);
+tangl_cof_b=dot([up_b,wp_b],[cos(delta_theta),sin(delta_theta)]);
+tangl_cof_c=dot([up_c,wp_c],[cos(delta_theta),sin(delta_theta)]);
 %将面源坐标系下的速度投影到控制点的法向
 end
