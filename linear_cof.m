@@ -1,4 +1,4 @@
-function [normal_cof_a,normal_cof_b,tangl_cof_a,tangl_cof_b] = linear_cof(X,Y,x1,y1,x2,y2,angle,theta,flag)
+function [normal_cof_a,normal_cof_b,tangl_cof_a,tangl_cof_b] = linear_cof(X,Y,x1,y1,x2,y2,angle,theta)
 % 计算影响系数 
 % 将控制面细分为n段求数值积分
 %控制点j坐标
@@ -27,16 +27,16 @@ up_b=1/(2*pi)*(angle2-angle1)/2+1/(2*pi)*(Y_r*log(r2/r1)+X_r*(angle2-angle1))/(s
 wp_b=1/(2*pi)*log(r2/r1)/2+1/(2*pi)*(X_r*log(r2/r1)+s-Y_r*(angle2-angle1))/(s);
 % cof=dot([up,wp],[cos(theta_p),sin(th
 % eta_p)]);
-if flag==1
+
 %     u_a=up_a*cos(theta_p)-wp_a*sin(theta_p);
 %     w_a=up_a*sin(theta_p)+wp_a*cos(theta_p);
-    normal_cof_a=dot([up_a,wp_a],[cos(delta_theta+pi/2),sin(delta_theta+pi/2)]);
+normal_cof_a=dot([up_a,wp_a],[cos(delta_theta+pi/2),sin(delta_theta+pi/2)]);
 %     u_b=up_b*cos(theta_p)-wp_b*sin(theta_p);
 %     w_b=up_b*sin(theta_p)+wp_b*cos(theta_p);
-    normal_cof_b=dot([up_b,wp_b],[cos(delta_theta+pi/2),sin(delta_theta+pi/2)]);
-    tangl_cof_a=dot([up_a,wp_a],[cos(delta_theta),sin(delta_theta)]);
-    tangl_cof_b=dot([up_b,wp_b],[cos(delta_theta),sin(delta_theta)]);
-end
+normal_cof_b=dot([up_b,wp_b],[cos(delta_theta+pi/2),sin(delta_theta+pi/2)]);
+tangl_cof_a=dot([up_a,wp_a],[cos(delta_theta),sin(delta_theta)]);
+tangl_cof_b=dot([up_b,wp_b],[cos(delta_theta),sin(delta_theta)]);
+
 %将面源坐标系下的速度投影到控制点的法向
 
 

@@ -1,4 +1,4 @@
-function [lamda,B] = solver(V,ctrl_x,ctrl_y,surf_x,surf_y,n ,length,theta)
+function [lamda,B] = solver(V,ctrl_x,ctrl_y,surf_x,surf_y,n ,theta)
 %   涡元法求解
 %   此处显示详细说明
 syms X Y;
@@ -34,7 +34,7 @@ for i =1:2*n-2
     RHS(i)=-dot(V,[cos(theta(i)+pi/2),sin(theta(i)+pi/2)]);
     for j=1:2*n-2
    
-        [n_a,n_b,t_a,t_b]=linear_cof(ctrl_x(i),ctrl_y(i),surf_x(j),surf_y(j),surf_x(j+1),surf_y(j+1),theta(j),theta(i),1); 
+        [n_a,n_b,t_a,t_b]=linear_cof(ctrl_x(i),ctrl_y(i),surf_x(j),surf_y(j),surf_x(j+1),surf_y(j+1),theta(j),theta(i)); 
         A(i,j)=A(i,j)+n_a;
         A(i,j+1)=A(i,j+1)+n_b;            
         B(i,j)=B(i,j)+t_a;
