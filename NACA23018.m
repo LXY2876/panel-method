@@ -67,10 +67,9 @@
     %直管道]\
     
 %     discrete_x=[zeros(1,n_slot),linspace(0.1,9.9,2*n_trans-2+sst_end-sst_start),10*ones(1,n_slot),linspace(9.9,0.1,suc_index-inj_index),0];
-%     discrete_y=[linspace(1,0,n_slot),zeros(1,2*n_trans-2+sst_end-sst_start),linspace(0,1,n_slot),ones(1,suc_index-inj_index),1];
+%     discrete_y=[linspace(1,0,n_slot),linspace(-0.01,-0.49,2*n_trans-2+sst_end-sst_start),linspace(-0.5,1.5,n_slot),linspace(1.49,1.01,suc_index-inj_index),1];
     Flag=[2*ones(1,n_slot-1),ones(1,2*n_trans-2+sst_end-sst_start+1),-2*ones(1,n_slot-1),-1*ones(1,suc_index-inj_index+1)];
     %弯管道
- 
     discrete_x=[linspace(1.3,1,n_slot)*cos(2/3*pi),cos(linspace(11/18*pi,7/18*pi,2*n_trans-2+sst_end-sst_start)),linspace(1,1.3,n_slot)*cos(1/3*pi),1.3*cos(linspace(7/18*pi,12/18*pi,suc_index-inj_index+1))];
     discrete_y=[linspace(1.3,1,n_slot)*sin(2/3*pi),sin(linspace(11/18*pi,7/18*pi,2*n_trans-2+sst_end-sst_start)),linspace(1,1.3,n_slot)*sin(1/3*pi),1.3*sin(linspace(7/18*pi,12/18*pi,suc_index-inj_index+1))];
     mask_face_type=[zeros(1,n_slot-1),ones(1,2*n_trans-2+sst_end-sst_start),zeros(1,n_slot-1),ones(1,suc_index-inj_index)];
